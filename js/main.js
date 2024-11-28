@@ -64,8 +64,10 @@ async function fetchNFTs() {
       const nftElement = document.createElement("div");
       nftElement.className = "nft";
       nftElement.dataset.index = index;
-      const baseScale = 0.7 + (0.3 * (index / (array.length - 1)));
-      nftElement.style.transform = `translateY(${index * 15}px) scale(${baseScale}) rotateX(-10deg)`;
+      const baseScale = 0.7 + 0.3 * (index / (array.length - 1));
+      nftElement.style.transform = `translateY(${
+        index * 15
+      }px) scale(${baseScale}) rotateX(-10deg)`;
 
       const thumbnailUri = nft.token.metadata.displayUri || "";
       const imageElement = createImageElement(
@@ -74,8 +76,8 @@ async function fetchNFTs() {
       );
       setBackground(nftElement, index);
 
-      nftElement.innerHTML = `
-          <h2>${nft.token.metadata.name}</h2>
+      nftElement.innerHTML = `<span class="titre_num"><h3>${index}</h3>
+          <h2>${nft.token.metadata.name}</h2></span>
           <a href="https://tzkt.io/${nft.token.contract.address}/tokens/${nft.token.tokenId}" target="_blank">
           </a>
         `;
@@ -83,23 +85,31 @@ async function fetchNFTs() {
       nftContainer.appendChild(nftElement);
 
       nftElement.addEventListener("click", () => {
-        nftElement.style.transform = `translateY(${index * 15}px) scale(${baseScale}) rotateX(-10deg)`;
-      
+        nftElement.style.transform = `translateY(${
+          index * 15
+        }px) scale(${baseScale}) rotateX(-10deg)`;
+
         if (currentExpanded && currentExpanded !== nftElement) {
-          let resetScale = 0.7 + (0.3 * (currentExpanded.dataset.index / (array.length - 1)));
-          currentExpanded.style.transform = `translateY(${currentExpanded.dataset.index * 15}px) scale(${resetScale}) rotateX(-10deg)`;
+          let resetScale =
+            0.7 + 0.3 * (currentExpanded.dataset.index / (array.length - 1));
+          currentExpanded.style.transform = `translateY(${
+            currentExpanded.dataset.index * 15
+          }px) scale(${resetScale}) rotateX(-10deg)`;
         }
-        
+
         if (currentExpanded !== nftElement) {
-          nftElement.style.transform = `translateY(${index * 15 - 200}px) scale(${baseScale + 0.035})`;
+          nftElement.style.transform = `translateY(${
+            index * 15 - 200
+          }px) scale(${baseScale + 0.033})`;
           currentExpanded = nftElement;
         } else {
           // Reset the current element to its original state
-          nftElement.style.transform = `translateY(${index * 15}px) scale(${baseScale}) rotateX(-10deg)`;
+          nftElement.style.transform = `translateY(${
+            index * 15
+          }px) scale(${baseScale}) rotateX(-10deg)`;
           currentExpanded = null;
         }
       });
-      
     });
   } catch (error) {
     console.error("Error fetching NFTs:", error);

@@ -1,10 +1,33 @@
-html,
+@font-face {
+  font-family: "A_Trib";
+  src: url("../src/OCR_A_Tribute/OCRATributeCom-Bold.ttf") format("truetype"),
+    url("../src/OCR_A_Tribute/OCRATributeCom-BoldMono.ttf") format("truetype"),
+    url("../src/OCR_A_Tribute/OCRATributeCom-Light.ttf") format("truetype"),
+    url("../src/OCR_A_Tribute/OCRATributeCom-LightMono.ttf") format("truetype"),
+    url("../src/OCR_A_Tribute/OCRATributeCom-Regular.ttf") format("truetype"),
+    url("../src/OCR_A_Tribute/OCRATributeCom-RegularMono.ttf")
+      format("truetype");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "B";
+  src: url("../src/OCR_B/OCRBStd.otf") format("opentype");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "A";
+  src: url("../src/OCR_A/OCRAStd.otf") format("opentype");
+  font-style: normal;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: "A_Trib";
   min-width: 100%;
   min-height: 100%;
   overflow: hidden;
-  background-color: #D6D2C8;
+  background-color: #d6d2c8;
 }
 
 #variadex {
@@ -20,15 +43,20 @@ body {
 .nft {
   background-position: center 0px;
   background-repeat: no-repeat;
-  display: inline-block;
+  display: flex;
   width: 600px;
-  height: 600px;
+  height: 380px;
   margin: 10px;
   padding: 10px;
   position: absolute;
   overflow: hidden;
   margin-top: -300px;
   transition: all 600ms cubic-bezier(0.86, 0, 0.07, 1);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+
   img {
     max-width: 400px;
     height: auto;
@@ -92,13 +120,42 @@ body {
 }
 
 h1 {
+  font-family: "A_Trib";
   text-align: center;
   margin-bottom: 0;
 }
+.titre_num {
+  position: relative;  /* 포지셔닝 컨텍스트 설정 */
+  align-items: center; /* 세로 중앙 정렬 */
+  height: auto;
+  margin-top: 15px;
+  padding-bottom: 50px;
+  display: flex;
+  width: 150px;
+  flex-wrap: wrap;
+  overflow: hidden;
+  justify-content: space-between; /* 요소들을 양끝으로 정렬 */
+}
+
+h2, h3 {
+  position: static; /* absolute 제거 */
+  margin: 0;
+}
 
 h2 {
-  font-weight: 200;
-  opacity: 0.5;
-  text-align: center;
-  margin-top: 30px;
+  font-family: "A_Trib";
+  font-weight: 400;
+  text-align: right;
+  color: #000;
+  font-size: 12px;
+  flex-grow: 1; /* 가능한 공간을 채우도록 설정 */
 }
+
+h3 {
+  opacity: 0.5;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 200;
+  flex-grow: 1; /* 가능한 공간을 채우도록 설정 */
+}
+
